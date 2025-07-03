@@ -1,56 +1,56 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createDoctorController, deleteDoctorController, getDoctorByIdController, getDoctorsController, updateDoctorByIdController } from './doctor.controller';
+import { createComplaintController, deleteComplaintController, getComplaintByIdController, getComplaintController, updateComplaintController } from './complaint.controller';
 
-const doctor = (app: Express) => {
-    //create doctor
-    app.route('/doctor').post(
+const complaint = (app: Express) => {
+    // create complaint
+    app.route('/complaint').post(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await createDoctorController(req,res)
+                await createComplaintController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //get all doctors
-    app.route('/doctor_all').get(
+    //get all complaints
+    app.route('/complaint_all').get(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await getDoctorsController(req,res)
+                await getComplaintController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    // get doctor by id
-    app.route('/doctor/:doctorId').get(
+    //get complaint by id
+    app.route('/complaint/:complaintId').get(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await getDoctorByIdController(req,res)
+                await getComplaintByIdController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //update doctor by id
-    app.route('/doctor/:doctorId').put(
+    //update complaint by id
+    app.route('/complaint/:complaintId').put(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await updateDoctorByIdController(req,res)
+                await updateComplaintController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //delete doctor by id
-    app.route('/doctor/:doctorId').delete(
+    //delete complaint by id
+    app.route('/complaint/:complaintId').delete(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await deleteDoctorController(req,res)
+                await deleteComplaintController(req,res)
             } catch (error) {
                 next(error)
             }
@@ -58,4 +58,4 @@ const doctor = (app: Express) => {
     )
 }
 
-export default doctor
+export default complaint

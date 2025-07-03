@@ -12,7 +12,8 @@ export const createUserController = async (req: Request, res: Response) => {
             await sendWelcomeEmail(newUser.email, newUser.firstName);
             res.status(201).json({
                 message: "User created successfully",
-                data: newUser});
+                data: newUser
+            });
         } else {
             res.status(400).json({
                 message: "Failed to create user"});

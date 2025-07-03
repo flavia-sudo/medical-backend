@@ -1,56 +1,56 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createDoctorController, deleteDoctorController, getDoctorByIdController, getDoctorsController, updateDoctorByIdController } from './doctor.controller';
+import { createPaymentController, deletePaymentController, getPaymentByIdController, getPaymentController, updatePaymentController } from './payment.controller';
 
-const doctor = (app: Express) => {
-    //create doctor
-    app.route('/doctor').post(
+const payment = (app: Express) => {
+    // create payment
+    app.route('/payment').post(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await createDoctorController(req,res)
+                await createPaymentController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //get all doctors
-    app.route('/doctor_all').get(
+    //get all payments
+    app.route('/payment_all').get(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await getDoctorsController(req,res)
+                await getPaymentController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    // get doctor by id
-    app.route('/doctor/:doctorId').get(
+    //get payment by id
+    app.route('/payment/:paymentId').get(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await getDoctorByIdController(req,res)
+                await getPaymentByIdController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //update doctor by id
-    app.route('/doctor/:doctorId').put(
+    //update payment by id
+    app.route('/payment/:paymentId').put(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await updateDoctorByIdController(req,res)
+                await updatePaymentController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //delete doctor by id
-    app.route('/doctor/:doctorId').delete(
+    //delete payment by id
+    app.route('/payment/:paymentId').delete(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await deleteDoctorController(req,res)
+                await deletePaymentController(req,res)
             } catch (error) {
                 next(error)
             }
@@ -58,4 +58,4 @@ const doctor = (app: Express) => {
     )
 }
 
-export default doctor
+export default payment

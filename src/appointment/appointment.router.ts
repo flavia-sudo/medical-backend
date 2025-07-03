@@ -1,56 +1,51 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createDoctorController, deleteDoctorController, getDoctorByIdController, getDoctorsController, updateDoctorByIdController } from './doctor.controller';
+import { createAppointmentController, deleteAppointmentController, getAppointmentByIdController, getAppointmentController, updateAppointmentController } from './appointment.controller';
 
-const doctor = (app: Express) => {
-    //create doctor
-    app.route('/doctor').post(
+const appointment = (app: Express) => {
+    app.route('/appointment').post(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await createDoctorController(req,res)
+                await createAppointmentController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //get all doctors
-    app.route('/doctor_all').get(
+    app.route('/appointment_all').get(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await getDoctorsController(req,res)
+                await getAppointmentController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    // get doctor by id
-    app.route('/doctor/:doctorId').get(
+    app.route('/appointment/:appointmentId').get(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await getDoctorByIdController(req,res)
+                await getAppointmentByIdController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //update doctor by id
-    app.route('/doctor/:doctorId').put(
+    app.route('/appointment/:appointmentId').put(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await updateDoctorByIdController(req,res)
+                await updateAppointmentController(req,res)
             } catch (error) {
                 next(error)
             }
         }
     )
 
-    //delete doctor by id
-    app.route('/doctor/:doctorId').delete(
+    app.route('/appointment/:appointmentId').delete(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
-                await deleteDoctorController(req,res)
+                await deleteAppointmentController(req,res)
             } catch (error) {
                 next(error)
             }
@@ -58,4 +53,4 @@ const doctor = (app: Express) => {
     )
 }
 
-export default doctor
+export default appointment
