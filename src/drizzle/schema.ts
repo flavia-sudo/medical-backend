@@ -143,15 +143,12 @@ export const PrescriptionRelations = relations(PrescriptionTable as any, ({ many
 }))
 
 // payment table relationships
-export const PaymentRelations = relations(PaymentTable as any, ({ one }) => ({
+export const PaymentRelations = relations(PaymentTable as any, ({ many, one }) => ({
     appointments: one(AppointmentTable as any, {
         fields: [PaymentTable.appointmentId as any],
         references: [AppointmentTable.appointmentId as any]
     }),
-    transactions: one(TransactionTable as any, {
-        fields: [PaymentTable.transactionId as any],
-        references: [TransactionTable.transactionId as any]
-    }),
+    transactions: many(TransactionTable as any),
 }))
 
 // transaction table relationships
@@ -176,3 +173,16 @@ export const ComplaintRelations = relations(ComplaintTable as any, ({ one }) => 
 }))
 
 export type TIUser = typeof UserTable.$inferInsert
+export type TSUser = typeof UserTable.$inferSelect
+export type TIDoctor = typeof DoctorTable.$inferInsert
+export type TSDoctor = typeof DoctorTable.$inferSelect
+export type TIAppointment = typeof AppointmentTable.$inferInsert
+export type TSAppointment = typeof AppointmentTable.$inferSelect
+export type TIPrescription = typeof PrescriptionTable.$inferInsert
+export type TSPrescription = typeof PrescriptionTable.$inferSelect
+export type TIPayment = typeof PaymentTable.$inferInsert
+export type TSPayment = typeof PaymentTable.$inferSelect
+export type TITransaction = typeof TransactionTable.$inferInsert
+export type TSTransaction = typeof TransactionTable.$inferSelect
+export type TIComplaint = typeof ComplaintTable.$inferInsert
+export type TSComplaint = typeof ComplaintTable.$inferSelect

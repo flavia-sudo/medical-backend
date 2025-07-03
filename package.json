@@ -7,8 +7,8 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "npm run build && node dist/index.js",
-    "push":"drizzle-kit push",
-    "studio":"drizzle-kit studio"
+    "push": "drizzle-kit push",
+    "studio": "drizzle-kit studio"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
     "@types/node": "^24.0.10",
+    "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.15.4",
     "drizzle-kit": "^0.31.4",
     "tsx": "^4.20.3",
@@ -23,8 +24,14 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^17.0.1",
     "drizzle-orm": "^0.44.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.4",
     "pg": "^8.16.3"
   }
 }
