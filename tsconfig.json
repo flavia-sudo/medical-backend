@@ -1,11 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2022",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "module": "NodeNext",                                /* Specify what module code is generated. */
-     "rootDir": "src",                                  /* Specify the root folder within your source files. */
-    "moduleResolution": "nodenext",                     /* Specify how TypeScript looks up a file from a given module specifier. */
-    "outDir": "./dist",                                  
+    "target": "ES2022",
+    "module": "NodeNext",
+    "rootDir": "./src",
+    // "moduleResolution": "node10",
+    "moduleResolution": "nodenext",
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-  }
+    "forceConsistentCasingInFileNames": true, 
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true 
+  },
+  "include": [
+    "src/**/*"   
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
 }

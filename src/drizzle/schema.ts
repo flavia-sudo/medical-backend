@@ -3,8 +3,8 @@ import { pgEnum, pgTable, serial, text, boolean, date, varchar, integer, timesta
 
 // Enum
 export const RoleEnum = pgEnum("role", ["user","admin","doctor"]);
-export const AppointmentEnum = pgEnum("appointment", ["pending","confirmed","cancelled"]);
-export const ComplaintEnum = pgEnum("complaint", ["Open","In Progress","Resolved","Closed"]);
+export const AppointmentEnum = pgEnum("appointment_status", ["pending","confirmed","cancelled"]);
+export const ComplaintEnum = pgEnum("complaint_status", ["Open","In Progress","Resolved","Closed"]);
 
 // user table
 export const UserTable = pgTable("user", {
