@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUserService, deleteUserService, getUserByIdService, getUserService, updateUserService } from "./user.service";
+import { createUserService, deleteUserService, getUserByIdService, getUsersService, updateUserService } from "./user.service";
 import { sendWelcomeEmail } from "../email/email.service";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -23,9 +23,9 @@ export const createUserController = async (req: Request, res: Response) => {
 }
 
 // get all users controller
-export const getAllUsersController = async (req: Request, res: Response) => {
+export const getUsersController = async (req: Request, res: Response) => {
     try {
-        const users = await getUserService();
+        const users = await getUsersService();
         res.status(200).json(users);
     } catch (error: any) {
         return res.status(500).json({error: error.message})

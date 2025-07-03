@@ -12,7 +12,7 @@ export const createUserService = async (user: TIUser) => {
 }
 
 // get users
-export const getUserService = async () => {
+export const getUsersService = async () => {
     const users = await db.query.UserTable.findMany();
     return users;
 }

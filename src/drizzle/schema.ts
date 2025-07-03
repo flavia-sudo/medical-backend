@@ -95,80 +95,83 @@ export const ComplaintTable = pgTable("complaint", {
 
 // Relationships
 // User table Relationships
-export const UserRelations = relations(UserTable as any, ({ many, one }) => ({
-    transactions: many(TransactionTable as any),
-    appointments: many(AppointmentTable as any),
-    complaints: many(ComplaintTable as any),
-    doctors: one(DoctorTable as any,{
-        fields: [UserTable.userId as any],
-        references: [DoctorTable.userId as any]
+export const UserRelations = relations(UserTable, ({ many, one }) => ({
+    transactions: many(TransactionTable),
+    appointments: many(AppointmentTable),
+    complaints: many(ComplaintTable),
+    doctors: one(DoctorTable,{
+        fields: [UserTable.userId],
+        references: [DoctorTable.userId]
     }),
 }))
 
 // Doctor table Relationships
-export const DoctorRelations = relations(DoctorTable as any, ({ many, one }) => ({
-    appointments: one(AppointmentTable as any, {
-        fields: [DoctorTable.doctorId as any],
-        references: [AppointmentTable.doctorId as any]
+export const DoctorRelations = relations(DoctorTable, ({ many, one }) => ({
+    appointments: one(AppointmentTable, {
+        fields: [DoctorTable.doctorId],
+        references: [AppointmentTable.doctorId]
     }),
-    prescriptions: many(PrescriptionTable as any),
+    prescriptions: many(PrescriptionTable),
 }))
 
 // Appointment table relationships
-export const AppointmentRelations = relations(AppointmentTable as any, ({ many,one }) => ({
-    complaints: many(ComplaintTable as any),
-    users: one(UserTable as any, {
-        fields: [AppointmentTable.userId as any],
-        references: [UserTable.userId as any]
+export const AppointmentRelations = relations(AppointmentTable, ({ many,one }) => ({
+    complaints: many(ComplaintTable),
+    users: one(UserTable, {
+        fields: [AppointmentTable.userId],
+        references: [UserTable.userId]
     }),
-    doctors: one(DoctorTable as any, {
-        fields: [AppointmentTable.doctorId as any],
-        references: [DoctorTable.doctorId as any]
+    doctors: one(DoctorTable, {
+        fields: [AppointmentTable.doctorId],
+        references: [DoctorTable.doctorId]
     }),
-    prescriptions: many(PrescriptionTable as any),
-    payment: one(PaymentTable as any, {
-        fields: [AppointmentTable.appointmentId as any],
-        references: [PaymentTable.appointmentId as any]
+    prescriptions: many(PrescriptionTable),
+    payment: one(PaymentTable, {
+        fields: [AppointmentTable.appointmentId],
+        references: [PaymentTable.appointmentId]
     })
 }))
 
 //prescription table relationships
-export const PrescriptionRelations = relations(PrescriptionTable as any, ({ many, one }) => ({
-    appointments: one(AppointmentTable as any, {
-        fields: [PrescriptionTable.appointmentId as any],
-        references: [AppointmentTable.appointmentId as any]
+export const PrescriptionRelations = relations(PrescriptionTable, ({ many, one }) => ({
+    appointments: one(AppointmentTable, {
+        fields: [PrescriptionTable.appointmentId],
+        references: [AppointmentTable.appointmentId]
     }),
-    doctor: many(DoctorTable as any),
-    user: many(UserTable as any),
+    doctor: many(DoctorTable),
+    user: many(UserTable),
 }))
 
 // payment table relationships
-export const PaymentRelations = relations(PaymentTable as any, ({ many, one }) => ({
-    appointments: one(AppointmentTable as any, {
-        fields: [PaymentTable.appointmentId as any],
-        references: [AppointmentTable.appointmentId as any]
+export const PaymentRelations = relations(PaymentTable, ({ many, one }) => ({
+    appointments: one(AppointmentTable, {
+        fields: [PaymentTable.appointmentId],
+        references: [AppointmentTable.appointmentId]
     }),
-    transactions: many(TransactionTable as any),
+    transactions: many(TransactionTable),
 }))
 
 // transaction table relationships
-export const TransactionRelations = relations(TransactionTable as any, ({ many, one }) => ({
-    users: many(UserTable as any),
-    payments: one(PaymentTable as any, {
-        fields: [TransactionTable.transactionId as any],
-        references: [PaymentTable.transactionId as any]
+export const TransactionRelations = relations(TransactionTable, ({ one }) => ({
+    users: one(UserTable, {
+        fields: [TransactionTable.userId],
+        references: [UserTable.userId]
+    }),
+    payments: one(PaymentTable, {
+        fields: [TransactionTable.transactionId],
+        references: [PaymentTable.transactionId]
     }),
 }))
 
 // complaints table relationships
-export const ComplaintRelations = relations(ComplaintTable as any, ({ one }) => ({
-    user: one(UserTable as any  , {
-        fields: [ComplaintTable.userId as any],
-        references: [UserTable.userId as any]
+export const ComplaintRelations = relations(ComplaintTable, ({ one }) => ({
+    user: one(UserTable  , {
+        fields: [ComplaintTable.userId],
+        references: [UserTable.userId]
     }),
-    appointment: one(AppointmentTable as any, {
-        fields: [ComplaintTable.AppointmentId as any],
-        references: [AppointmentTable.appointmentId as any]
+    appointment: one(AppointmentTable, {
+        fields: [ComplaintTable.AppointmentId],
+        references: [AppointmentTable.appointmentId]
     }),
 }))
 
