@@ -3,13 +3,13 @@ import db from "../drizzle/db";
 import { TIUser, UserTable } from "../drizzle/schema";
 
 // create user service
-export const createUserService = async (user: TIUser) => {
-    const [ inserted ] = await db.insert(UserTable).values(user).returning();
-    if (inserted) {
-        return inserted;
-    }
-    return null;
-}
+// export const createUserService = async (user: TIUser) => {
+//     const [ inserted ] = await db.insert(UserTable).values(user).returning();
+//     if (inserted) {
+//         return inserted;
+//     }
+//     return null;
+// }
 
 // get users
 export const getUsersService = async () => {

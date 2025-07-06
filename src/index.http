@@ -1,0 +1,80 @@
+### Test Route
+GET https://medical-backend-v1wz.onrender.com
+
+###Create
+POST https://medical-backend-v1wz.onrender.com
+Content-Type: application/json
+
+// user table
+{
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john@gmail.com",
+    "password": "mypassword123",
+    "phoneNumber": 0123456789,
+    "address": "123 Main St",
+}
+
+// doctor table
+{
+    "userId": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "specialization": "Psychiatrist",
+    "contactPhone": 0711223344,
+    "availableDays": "Weekdays",
+}
+
+// appointment table
+{
+    "userId": 1,
+    "doctorId": 2,
+    "appointmentDate": "2024-02-02",
+    "time": "2024-02-02 11:00:00",
+    "totalAmount": "300.00",
+    "status": "confirmed",
+}
+
+//prescription table
+{
+    "appointmentId": 1,
+    "doctorId": 1,
+    "patientId": 1,
+    "notes": "The medicine name
+Dosage (e.g., 500mg)
+Frequency (e.g., twice a day)
+Duration (e.g., 5 days)
+Additional notes (e.g., take after meals)",
+    "createdAt": "2024-02-02",
+    "updatedAt": null,
+}
+
+// transaction table
+{
+    "userId": 1,
+    "transactionName": "consultation fee",
+    "amount": "150.00",
+    "status": "true",
+}
+
+// payment table
+{
+    "appointmentId": 1,
+    "amount": "300.00",
+    "status": "false",
+    "transactionId": 1,
+    "paymentDate": "2024-02-02",
+    "createdAt": "2024-02-02",
+    "updatedAt": "2024-02-03",
+}
+
+// complaints table
+  {
+    "userId": 1,
+    "appointmentId": 1,
+    "subject": "Doctor Delay",
+    "description": "The doctor arrived 30 minutes late for the scheduled appointment.",
+    "status": "pending",
+    "createdAt": "2025-07-01",
+    "updatedAt": "2025-07-01",
+  },

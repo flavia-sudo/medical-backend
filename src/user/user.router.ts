@@ -1,17 +1,17 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createUserController, deleteUserController, getUserByIdController, getUsersController, updateUserByIdController } from './user.controller';
+import { deleteUserController, getUserByIdController, getUsersController, updateUserByIdController } from './user.controller';
 
 const user = (app: Express) => {
     //create user
-    app.route('/user').post(
-        async (req:Request, res:Response, next:NextFunction) => {
-            try {
-                await createUserController(req,res)
-            } catch (error) {
-                next(error)
-            }
-        }
-    )
+    // app.route('/user').post(
+    //     async (req:Request, res:Response, next:NextFunction) => {
+    //         try {
+    //             await createUserController(req,res)
+    //         } catch (error) {
+    //             next(error)
+    //         }
+    //     }
+    // )
 
     //get all users
     app.route('/user_all').get(

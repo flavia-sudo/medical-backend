@@ -13,7 +13,7 @@ export const UserTable = pgTable("user", {
     lastName: varchar("LastName", { length: 50 }).notNull(),
     email: varchar("Email", { length: 255 }).notNull().unique(),
     password: varchar("Password", { length: 50 }).notNull(),
-    contactPhone: text("Phone Number"),
+    phoneNumber: text("Phone Number"),
     address: varchar("Address", { length: 50 }).notNull(),
     role: RoleEnum("Role").notNull(),
     createdAt: date("Created At").notNull(),
@@ -64,7 +64,7 @@ export const PrescriptionTable = pgTable("prescription", {
 export const TransactionTable = pgTable("transaction", {
     transactionId: serial("transactionId").primaryKey(),
     userId: integer("userId").references(() => UserTable.userId).notNull(),
-    transactionName: varchar("Transaction Date").notNull(),
+    transactionName: varchar("Transaction Name").notNull(),
     amount: decimal("Amount", { precision: 10, scale: 2 }).notNull(),
     status: boolean("Status").default(true),
 })
@@ -85,7 +85,7 @@ export const PaymentTable = pgTable("payment", {
 export const ComplaintTable = pgTable("complaint", {
     complaintId: serial("complaintId").primaryKey(),
     userId: integer("userId").references(() => UserTable.userId).notNull(),
-    AppointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId).notNull(),
+    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId).notNull(),
     subject: text("Subject").notNull(),
     description: text("Description").notNull(),
     status: ComplaintEnum("Status").notNull(),
@@ -106,11 +106,8 @@ export const UserRelations = relations(UserTable, ({ many, one }) => ({
 }))
 
 // Doctor table Relationships
-export const DoctorRelations = relations(DoctorTable, ({ many, one }) => ({
-    appointments: one(AppointmentTable, {
-        fields: [DoctorTable.doctorId],
-        references: [AppointmentTable.doctorId]
-    }),
+export const DoctorRelations = relations(DoctorTable, ({ many }) => ({
+    appointments: many(AppointmentTable),
     prescriptions: many(PrescriptionTable),
 }))
 
@@ -164,13 +161,10 @@ export const TransactionRelations = relations(TransactionTable, ({ one }) => ({
 }))
 
 // complaints table relationships
-export const ComplaintRelations = relations(ComplaintTable, ({ one }) => ({
-    user: one(UserTable  , {
-        fields: [ComplaintTable.userId],
-        references: [UserTable.userId]
-    }),
+export const ComplaintRelations = relations(ComplaintTable, ({ many, one }) => ({
+    user: many(UserTable),
     appointment: one(AppointmentTable, {
-        fields: [ComplaintTable.AppointmentId],
+        fields: [ComplaintTable.appointmentId],
         references: [AppointmentTable.appointmentId]
     }),
 }))
