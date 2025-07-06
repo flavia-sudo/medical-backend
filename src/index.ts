@@ -6,12 +6,14 @@ import payment from "./payment/payment.router";
 import complaint from "./complaints/complaint.router";
 import transaction from "./transaction/transaction.router";
 import prescription from "./prescription/prescription.router";
+import auth from "./auth/auth.router";
 const initializeApp = () => {
 const app = express();
 //middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+auth(app);
 user(app);
 doctor(app);
 appointment(app);

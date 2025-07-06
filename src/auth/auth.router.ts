@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { createAdminController, loginUserController, registerUserController, verifyCodeController } from "./auth.controller";
 
-const user = (app: Express) => {
+const auth = (app: Express) => {
     app.route("/auth/register").post(
         async (req, res, next) => {
             try {
@@ -45,4 +45,4 @@ const user = (app: Express) => {
     );
 }
 
-export default user;
+export default auth;
