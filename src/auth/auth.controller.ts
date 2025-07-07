@@ -1,9 +1,5 @@
 import { Request, Response } from 'express';
 import { createAdminService, createUserService, userLoginService, verifyCodeService } from './auth.service';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { sendVerificationEmail } from '../email/email.service';
-import { sendWelcomeEmail } from '../email/email.service';
 
 export const registerUserController = async (req: Request, res: Response) => {
     try {
