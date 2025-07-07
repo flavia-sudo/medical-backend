@@ -1,5 +1,5 @@
 ### Test Route
-GET https://medical-backend-v1wz.onrender.com
+GET http://localhost:3000
 
 ###Create
 POST https://medical-backend-v1wz.onrender.com

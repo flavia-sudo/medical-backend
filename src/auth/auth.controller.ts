@@ -3,6 +3,7 @@ import { createAdminService, createUserService, userLoginService, verifyCodeServ
 
 export const registerUserController = async (req: Request, res: Response) => {
     try {
+        console.log(req.body);
         const {user, token} = await createUserService(req.body);
         return res.status(201).json({
             message: "User created successfully",
@@ -10,6 +11,7 @@ export const registerUserController = async (req: Request, res: Response) => {
             token
         });
     } catch (error: any) {
+        console.log(error); 
         return res.status(500).json({error: error.message})
     }
 }

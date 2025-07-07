@@ -1,27 +1,27 @@
 import { Request, Response } from "express";
-import { deleteUserService, getUserByIdService, getUsersService, updateUserService } from "./user.service";
+import { createUserService, deleteUserService, getUserByIdService, getUsersService, updateUserService } from "./user.service";
 import { sendWelcomeEmail } from "../email/email.service";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-// export const createUserController = async (req: Request, res: Response) => {
-//     try {
-//         const user = req.body;
-//         const newUser = await createUserService(user);
-//         if (newUser) {
-//             await sendWelcomeEmail(newUser.email, newUser.firstName);
-//             res.status(201).json({
-//                 message: "User created successfully",
-//                 data: newUser
-//             });
-//         } else {
-//             res.status(400).json({
-//                 message: "Failed to create user"});
-//         }
-//     } catch (error: any) {
-//         return res.status(500).json({error: error.message})
-//     }
-// }
+export const createUserController = async (req: Request, res: Response) => {
+    try {
+        const user = req.body;
+        const newUser = await createUserService(user);
+        if (newUser) {
+            await sendWelcomeEmail(newUser.email, newUser.firstName);
+            res.status(201).json({
+                message: "User created successfully",
+                data: newUser
+            });
+        } else {
+            res.status(400).json({
+                message: "Failed to create user"});
+        }
+    } catch (error: any) {
+        return res.status(500).json({error: error.message})
+    }
+}
 
 // get all users controller
 export const getUsersController = async (req: Request, res: Response) => {

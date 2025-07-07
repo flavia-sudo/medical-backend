@@ -12,7 +12,7 @@ export const UserTable = pgTable("user", {
     firstName: varchar("FirstName", { length: 50 }).notNull(),
     lastName: varchar("LastName", { length: 50 }).notNull(),
     email: varchar("Email", { length: 255 }).notNull().unique(),
-    password: varchar("Password", { length: 50 }).notNull(),
+    password: varchar("Password", { length: 500 }).notNull(),
     phoneNumber: text("Phone Number"),
     address: varchar("Address", { length: 50 }).notNull(),
     role: RoleEnum("Role").notNull(),
