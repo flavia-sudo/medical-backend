@@ -32,8 +32,8 @@ export const DoctorTable = pgTable("doctor", {
     specialization: varchar("Specialization", { length: 50 }),
     contactPhone: text("Phone Number"),
     availableDays: varchar("Available Days", { length: 50 }),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: timestamp("Created At").defaultNow(),
+    updatedAt: timestamp("Updated At").defaultNow(),
 })
 
 //appointment table
@@ -45,8 +45,8 @@ export const AppointmentTable = pgTable("appointment", {
     time: timestamp("Time", { withTimezone: true }),
     totalAmount: decimal("Total Amount", { precision: 10, scale: 2 }).notNull(),
     status: AppointmentEnum("Status").notNull().default("pending"),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: timestamp("Created At").defaultNow(),
+    updatedAt: timestamp("Updated At").defaultNow(),
 })
 
 // prescription table
@@ -56,8 +56,8 @@ export const PrescriptionTable = pgTable("prescription", {
     doctorId: integer("doctorId").references(() => DoctorTable.doctorId).notNull(),
     patientId: integer("patientId").references(() => UserTable.userId).notNull(),
     notes: text("Prescription").notNull(),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: timestamp("Created At").defaultNow(),
+    updatedAt: timestamp("Updated At").defaultNow(),
 })
 
 // transaction table
@@ -77,8 +77,8 @@ export const PaymentTable = pgTable("payment", {
     status: boolean("Status").default(true),
     transactionId: integer("Transaction Id").references(() => TransactionTable.transactionId).notNull(),
     paymentDate: date("Payment Date").notNull(),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: timestamp("Created At").defaultNow(),
+    updatedAt: timestamp("Updated At").defaultNow(),
 })
 
 // complaints table
@@ -89,8 +89,8 @@ export const ComplaintTable = pgTable("complaint", {
     subject: text("Subject").notNull(),
     description: text("Description").notNull(),
     status: ComplaintEnum("Status").notNull().default("Open"),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: timestamp("Created At").defaultNow(),
+    updatedAt: timestamp("Updated At").defaultNow(),
 })
 
 // Relationships
