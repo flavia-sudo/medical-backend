@@ -42,7 +42,7 @@ export const AppointmentTable = pgTable("appointment", {
     userId: integer("userId").references(() => UserTable.userId).notNull(),
     doctorId: integer("doctorId").references(() => DoctorTable.doctorId).notNull(),
     appointmentDate: date("Date").notNull(),
-    time: new Date("Time"),
+    time: timestamp("Time"),
     totalAmount: decimal("Total Amount", { precision: 10, scale: 2 }).notNull(),
     status: AppointmentEnum("Status").notNull().default("pending"),
     createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
