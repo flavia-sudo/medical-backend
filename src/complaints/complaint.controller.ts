@@ -4,6 +4,12 @@ import { createComplaintService, deleteComplaintService, getComplaintByIdService
 export const createComplaintController = async (req: Request, res: Response) => {
     try {
         const complaint = req.body;
+        if (complaint.createdAt) {
+            complaint.createdAt = new Date(complaint.createdAt);
+        }
+        if (complaint.updatedAt) {
+            complaint.updatedAt = new Date(complaint.updatedAt);
+        }
         const newComplaint = await createComplaintService(complaint);
         if (newComplaint) {
             res.status(201).json({

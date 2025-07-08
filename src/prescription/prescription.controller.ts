@@ -4,6 +4,12 @@ import { createPrescriptionService, deletePrescriptionService, getPrescriptionBy
 export const createPrescriptionController = async (req: Request, res: Response) => {
     try {
         const prescription = req.body;
+        if (prescription.createdAt) {
+            prescription.createdAt = new Date(prescription.createdAt);
+        }
+        if (prescription.updatedAt) {
+            prescription.updatedAt = new Date(prescription.updatedAt);
+        }
         const newPrescription = await createPrescriptionService(prescription);
         if (newPrescription) {
             res.status(201).json({

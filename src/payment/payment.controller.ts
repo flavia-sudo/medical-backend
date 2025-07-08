@@ -4,6 +4,12 @@ import { Request, Response } from "express";
 export const createPaymentController = async (req: Request, res: Response) => {
     try {
         const payment = req.body;
+        if (payment.createdAt) {
+            payment.createdAt = new Date(payment.createdAt);
+        }
+        if (payment.updatedAt) {
+            payment.updatedAt = new Date(payment.updatedAt);
+        }
         const newPayment = await createPaymentService(payment);
         if (newPayment) {
             res.status(201).json({

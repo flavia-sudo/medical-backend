@@ -8,6 +8,12 @@ export const createAppointmentController = async(req: Request, res: Response) =>
         if (appointment.time) {
             appointment.time = new Date(appointment.time);
         }
+        if (appointment.createdAt) {
+            appointment.createdAt = new Date(appointment.createdAt);
+        }
+        if (appointment.updatedAt) {
+            appointment.updatedAt = new Date(appointment.updatedAt);
+        }
         const newAppointment = await createAppointmentService(appointment);
         console.log(appointment);
         if (newAppointment) {
