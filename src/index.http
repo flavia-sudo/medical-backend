@@ -54,7 +54,7 @@ Additional notes (e.g., take after meals)",
     "userId": 1,
     "transactionName": "consultation fee",
     "amount": "150.00",
-    "status": "true",
+    "status": "true"
 }
 
 // payment table
@@ -63,9 +63,9 @@ Additional notes (e.g., take after meals)",
     "amount": "300.00",
     "status": "false",
     "transactionId": 1,
-    "paymentDate": "2024-02-02",
-    "createdAt": "2024-02-02",
-    "updatedAt": "2024-02-03",
+    "paymentDate": "2025-07-08",
+    "createdAt": "2025-07-08T00:00:00.000Z",
+    "updatedAt": "2025-07-08T00:00:00.000Z"
 }
 
 // complaints table

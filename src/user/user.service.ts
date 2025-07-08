@@ -27,13 +27,13 @@ export const getUserByIdService = async (Id: number) => {
 
 // update user by id
 export const updateUserService = async (Id: number, user: TIUser) => {
-    const updated = await db.update(UserTable).set(user).where(eq(UserTable.userId, Id)).returning();
+    const updated = await db.update(UserTable).set(user).where(eq(UserTable.userId, Id));
     return updated;
 }
 
 // delete user by id
 export const deleteUserService = async (Id: number) => {
-    const deleted = await db.delete(UserTable).where(eq(UserTable.userId, Id)).returning();
+    const deleted = await db.delete(UserTable).where(eq(UserTable.userId, Id));
     return deleted;
 }
 
