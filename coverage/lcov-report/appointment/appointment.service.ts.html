@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for user/user.service.ts</title>
+    <title>Code coverage report for appointment/appointment.service.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">user</a> user.service.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">appointment</a> appointment.service.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -100,24 +100,10 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -151,72 +137,44 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { eq } from "drizzle-orm";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import e from "express";
 import db from "../drizzle/db";
-import { TIUser, UserTable } from "../drizzle/schema";
+import { AppointmentTable, TIAppointment } from "../drizzle/schema";
+import { eq } from "drizzle-orm";
 &nbsp;
-// create user service
-export const createUserService = async (user: TIUser) =&gt; {
-    const [ inserted ] = await db.insert(UserTable).values(user).returning();
+export const createAppointmentService = async (appointment: TIAppointment) =&gt; {
+    const [ inserted ] = await db.insert(AppointmentTable).values(appointment).returning();
     if (inserted) {
         return inserted;
     }
     return null;
 }
 &nbsp;
-// get users
-export const getUsersService = async () =&gt; {
-    const users = await db.query.UserTable.findMany();
-    return users;
+// get appointments
+export const getAppointmentService = async () =&gt; {
+    const appointments = await db.query.AppointmentTable.findMany();
+    return appointments;
 }
 &nbsp;
-// get user by id
-export const getUserByIdService = async (Id: number) =&gt; {
-    const user = await db.query.UserTable.findFirst({
-        where: eq(UserTable.userId, Id)
+//get appointment by id
+export const getAppointmentByIdService = async (Id: number) =&gt; {
+    const appointment = await db.query.AppointmentTable.findFirst({
+        where: eq(AppointmentTable.appointmentId, Id)
     });
-    return user;
+    return appointment;
 }
 &nbsp;
-// update user by id
-export const updateUserService = async (Id: number, user: TIUser) =&gt; {
-    const updated = await db.update(UserTable).set(user).where(eq(UserTable.userId, Id));
+//update appointment by id
+export const updateAppointmentService = async (Id: number, appointment: TIAppointment) =&gt; {
+    const updated = await db.update(AppointmentTable).set(appointment).where(eq(AppointmentTable.appointmentId, Id)).returning();
     return updated;
 }
 &nbsp;
-// delete user by id
-export const deleteUserService = async (Id: number) =&gt; {
-    const deleted = await db.delete(UserTable).where(eq(UserTable.userId, Id));
+//delete appointment by id
+export const deleteAppointmentService = async (Id: number) =&gt; {
+    const deleted = await db.delete(AppointmentTable).where(eq(AppointmentTable.appointmentId, Id)).returning();
     return deleted;
-}
-&nbsp;
-// get user with complaints
-// export const getUserWithComplaintsService = async () =&gt; {
-//     const user = await db.query.UserTable.findMany({
-//         with: {
-//             complaints: {
-//                 with: {
-//                     Appointment: true
-//                 }
-//             }
-//         }
-//     });
-//     return user;
-// }</pre></td></tr></table></pre>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
