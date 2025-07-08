@@ -45,8 +45,6 @@ Dosage (e.g., 500mg)
 Frequency (e.g., twice a day)
 Duration (e.g., 5 days)
 Additional notes (e.g., take after meals)",
-    "createdAt": "2024-02-02",
-    "updatedAt": null,
 }
 
 // transaction table
