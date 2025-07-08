@@ -16,8 +16,8 @@ export const UserTable = pgTable("user", {
     phoneNumber: text("Phone Number"),
     address: varchar("Address", { length: 50 }).notNull(),
     role: RoleEnum("Role").notNull(),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: date("Created At").defaultNow(),
+    updatedAt: date("Updated At").defaultNow(),
     image_URL: varchar("Image URL", { length: 255 }).default("https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"),
     verificationCode: varchar("Verification Code", { length: 10 }),
     verified: boolean("Verified").default(false),
@@ -32,8 +32,8 @@ export const DoctorTable = pgTable("doctor", {
     specialization: varchar("Specialization", { length: 50 }),
     contactPhone: text("Phone Number"),
     availableDays: varchar("Available Days", { length: 50 }),
-    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
+    createdAt: date("Created At").defaultNow(),
+    updatedAt: date("Updated At").defaultNow(),
 })
 
 //appointment table
