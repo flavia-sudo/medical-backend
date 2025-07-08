@@ -17,12 +17,12 @@ beforeEach(() => {
     jest.clearAllMocks();
 });
 
-describe('cretaeTransactionService', () => {
+describe('createTransactionService', () => {
     it('should create a new transaction', async () => {
         const transaction = {
             userId: 1,
             transactionName: "consultation fee",
-            amount: 150.00,
+            amount: '150.00',
             status: true,
     }
     const insertedTransacton = { transactionId: 1, ...transaction };
@@ -47,7 +47,7 @@ describe("return null if insert fails",() => {
         const transaction = {
             userId: 1,
             transactionName: "consultation fee",
-            amount: 150.00,
+            amount: '150.00',
             status: true,
     }
         const result = await createTransactionService(transaction);
@@ -93,7 +93,9 @@ describe("updateTransactionByIdService", () => {
     it("should update a transaction and return success message", async () => {
         (db.update as jest.Mock).mockReturnValue({
             set: jest.fn().mockReturnValue({
-                where: jest.fn().mockReturnValueOnce(null)
+                where: jest.fn().mockReturnValue({
+                    returning: jest.fn().mockResolvedValueOnce([{ transactionId: 1 }])
+                })
             })
         })
         const result = await updateTransactionService(1, {
@@ -103,17 +105,19 @@ describe("updateTransactionByIdService", () => {
             status: true,
     });
         expect(db.update).toHaveBeenCalledWith(TransactionTable);
-        expect(result).toBe(null);
+        expect(result).toEqual([{ transactionId: 1 }]);
     })
 })
 
 describe("deleteTransactionByIdService", () => {
     it("should delete a transaction and return success message", async () => {
         (db.delete as jest.Mock).mockReturnValue({
-            where: jest.fn().mockReturnValueOnce(1)
+            where: jest.fn().mockReturnValue({
+                returning: jest.fn().mockResolvedValueOnce([{ transactionId: 1 }])
+            })
         })
         const result = await deleteTransactionService(1);
         expect(db.delete).toHaveBeenCalledWith(TransactionTable);
-        expect(result).toBe(1);
+        expect(result).toEqual([{ transactionId: 1 }]);
     })
 })
