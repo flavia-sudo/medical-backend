@@ -4,7 +4,12 @@ import { createAppointmentService, deleteAppointmentService, getAppointmentByIdS
 export const createAppointmentController = async(req: Request, res: Response) => {
     try {
         const appointment = req.body;
+        //Convert time to Date object if provided
+        if (appointment.time) {
+            appointment.time = new Date(appointment.time);
+        }
         const newAppointment = await createAppointmentService(appointment);
+        console.log(appointment);
         if (newAppointment) {
             res.status(201).json({
                 message: "Appointment created successfully",
@@ -16,6 +21,7 @@ export const createAppointmentController = async(req: Request, res: Response) =>
             });
         }
     } catch (error: any) {
+        console.log(error); 
         return res.status(500).json({error: error.message})
     }
 }

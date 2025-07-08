@@ -16,8 +16,8 @@ export const UserTable = pgTable("user", {
     phoneNumber: text("Phone Number"),
     address: varchar("Address", { length: 50 }).notNull(),
     role: RoleEnum("Role").notNull(),
-    createdAt: date("Created At").notNull(),
-    updatedAt: date("Updated At"),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
     image_URL: varchar("Image URL", { length: 255 }).default("https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"),
     verificationCode: varchar("Verification Code", { length: 10 }),
     verified: boolean("Verified").default(false),
@@ -32,8 +32,8 @@ export const DoctorTable = pgTable("doctor", {
     specialization: varchar("Specialization", { length: 50 }),
     contactPhone: text("Phone Number"),
     availableDays: varchar("Available Days", { length: 50 }),
-    createdAt: date("Created At").notNull(),
-    updatedAt: date("Updated At"),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
 })
 
 //appointment table
@@ -44,9 +44,9 @@ export const AppointmentTable = pgTable("appointment", {
     appointmentDate: date("Date").notNull(),
     time: timestamp("Time"),
     totalAmount: decimal("Total Amount", { precision: 10, scale: 2 }).notNull(),
-    status: AppointmentEnum("Status").notNull(),
-    createdAt: date("Created At").notNull(),
-    updatedAt: date("Updated At"),
+    status: AppointmentEnum("Status").notNull().default("pending"),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
 })
 
 // prescription table
@@ -56,8 +56,8 @@ export const PrescriptionTable = pgTable("prescription", {
     doctorId: integer("doctorId").references(() => DoctorTable.doctorId).notNull(),
     patientId: integer("patientId").references(() => UserTable.userId).notNull(),
     notes: text("Prescription").notNull(),
-    createdAt: date("Created At").notNull(),
-    updatedAt: date("Updated At"),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
 })
 
 // transaction table
@@ -77,8 +77,8 @@ export const PaymentTable = pgTable("payment", {
     status: boolean("Status").default(true),
     transactionId: integer("Transaction Id").references(() => TransactionTable.transactionId).notNull(),
     paymentDate: date("Payment Date").notNull(),
-    createdAt: date("Created At").notNull(),
-    updatedAt: date("Updated At"),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
 })
 
 // complaints table
@@ -88,9 +88,9 @@ export const ComplaintTable = pgTable("complaint", {
     appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId).notNull(),
     subject: text("Subject").notNull(),
     description: text("Description").notNull(),
-    status: ComplaintEnum("Status").notNull(),
-    createdAt: date("Created At").notNull(),
-    updatedAt: date("Updated At"),
+    status: ComplaintEnum("Status").notNull().default("Open"),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
 })
 
 // Relationships

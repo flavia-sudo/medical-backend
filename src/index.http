@@ -17,7 +17,7 @@ Content-Type: application/json
 
 // doctor table
 {
-    "userId": 2,
+    "userId": 3,
     "firstName": "Jane",
     "lastName": "Smith",
     "specialization": "Psychiatrist",
