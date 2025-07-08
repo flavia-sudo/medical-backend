@@ -32,8 +32,8 @@ export const DoctorTable = pgTable("doctor", {
     specialization: varchar("Specialization", { length: 50 }),
     contactPhone: text("Phone Number"),
     availableDays: varchar("Available Days", { length: 50 }),
-    createdAt: date("Created At").defaultNow(),
-    updatedAt: date("Updated At").defaultNow(),
+    createdAt: timestamp("Created At", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("Updated At", { withTimezone: true }).defaultNow(),
 })
 
 //appointment table

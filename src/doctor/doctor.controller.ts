@@ -3,6 +3,12 @@ import { createDoctorService, deleteDoctorService, getDoctorByIdService, getDoct
 export const createDoctorController = async (req: Request, res: Response) => {
     try {
         const doctor = req.body;
+        if (doctor.createdAt) {
+            doctor.createdAt = new Date(doctor.createdAt);
+        }
+        if (doctor.updatedAt) {
+            doctor.updatedAt = new Date(doctor.updatedAt);
+        }
         const newDoctor = await createDoctorService(doctor);
         if (newDoctor) {
             res.status(201).json({
