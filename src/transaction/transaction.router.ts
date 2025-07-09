@@ -1,5 +1,6 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createTransactionController, deleteTransactionController, getTransactionByIdController, getTransactionController, updateTransactionController } from './transaction.controller';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 export const transaction = (app: Express) => {
     // create transaction
@@ -15,6 +16,8 @@ export const transaction = (app: Express) => {
 
     //get all transactions
     app.route('/transaction_all').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getTransactionController(req,res)

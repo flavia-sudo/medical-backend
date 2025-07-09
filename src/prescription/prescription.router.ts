@@ -1,5 +1,6 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createPrescriptionController, deletePrescriptionController, getPrescriptionByIdController, getPrescriptionController, updatePrescriptionController } from './prescription.controller';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 const prescription = (app: Express) => {
     app.route('/prescription').post(
@@ -13,6 +14,8 @@ const prescription = (app: Express) => {
     )
 
     app.route('/prescription_all').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPrescriptionController(req,res)

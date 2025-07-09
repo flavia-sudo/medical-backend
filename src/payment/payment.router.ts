@@ -1,5 +1,6 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createPaymentController, deletePaymentController, getPaymentByIdController, getPaymentController, updatePaymentController } from './payment.controller';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 const payment = (app: Express) => {
     // create payment
@@ -15,6 +16,8 @@ const payment = (app: Express) => {
 
     //get all payments
     app.route('/payment_all').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPaymentController(req,res)

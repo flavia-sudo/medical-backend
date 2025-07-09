@@ -1,5 +1,6 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createComplaintController, deleteComplaintController, getComplaintByIdController, getComplaintController, updateComplaintController } from './complaint.controller';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 const complaint = (app: Express) => {
     // create complaint
@@ -15,6 +16,8 @@ const complaint = (app: Express) => {
 
     //get all complaints
     app.route('/complaint_all').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getComplaintController(req,res)

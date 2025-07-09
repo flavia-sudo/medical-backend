@@ -26,7 +26,7 @@ export const UserTable = pgTable("user", {
 //doctor table
 export const DoctorTable = pgTable("doctor", {
     doctorId: serial("doctorId").primaryKey(),
-    userId: integer("userId").references(() => UserTable.userId).notNull(),
+    userId: integer("userId").references(() => UserTable.userId, { onDelete: "cascade" }).notNull(),
     firstName: varchar("FirstName", { length: 50 }).notNull(),
     lastName: varchar("LastName", { length: 50 }).notNull(),
     specialization: varchar("Specialization", { length: 50 }),
@@ -40,7 +40,7 @@ export const DoctorTable = pgTable("doctor", {
 export const AppointmentTable = pgTable("appointment", {
     appointmentId: serial("appointmentId").primaryKey(),
     userId: integer("userId").references(() => UserTable.userId).notNull(),
-    doctorId: integer("doctorId").references(() => DoctorTable.doctorId).notNull(),
+    doctorId: integer("doctorId").references(() => DoctorTable.doctorId, { onDelete: "set null" }).notNull(),
     appointmentDate: date("Date").notNull(),
     time: timestamp("Time", { withTimezone: true }),
     totalAmount: decimal("Total Amount", { precision: 10, scale: 2 }).notNull(),
@@ -52,7 +52,7 @@ export const AppointmentTable = pgTable("appointment", {
 // prescription table
 export const PrescriptionTable = pgTable("prescription", {
     prescriptionId: serial("prescriptionId").primaryKey(),
-    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId).notNull(),
+    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId, { onDelete: "cascade" }).notNull(),
     doctorId: integer("doctorId").references(() => DoctorTable.doctorId).notNull(),
     patientId: integer("patientId").references(() => UserTable.userId).notNull(),
     notes: text("Prescription").notNull(),
@@ -72,10 +72,10 @@ export const TransactionTable = pgTable("transaction", {
 // payment table
 export const PaymentTable = pgTable("payment", {
     paymentId: serial("paymentId").primaryKey(),
-    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId).notNull(),
+    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId, { onDelete: "cascade" }).notNull(),
     amount: decimal("Amount", { precision: 10, scale: 2 }).notNull(),
     status: boolean("Status").default(true),
-    transactionId: integer("Transaction Id").references(() => TransactionTable.transactionId).notNull(),
+    transactionId: integer("Transaction Id").references(() => TransactionTable.transactionId, { onDelete: "set null" }).notNull(),
     paymentDate: date("Payment Date").notNull(),
     createdAt: timestamp("Created At").defaultNow(),
     updatedAt: timestamp("Updated At").defaultNow(),
@@ -85,7 +85,7 @@ export const PaymentTable = pgTable("payment", {
 export const ComplaintTable = pgTable("complaint", {
     complaintId: serial("complaintId").primaryKey(),
     userId: integer("userId").references(() => UserTable.userId).notNull(),
-    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId).notNull(),
+    appointmentId: integer("appointmentId").references(() => AppointmentTable.appointmentId, { onDelete: "set null" }).notNull(),
     subject: text("Subject").notNull(),
     description: text("Description").notNull(),
     status: ComplaintEnum("Status").notNull().default("Open"),

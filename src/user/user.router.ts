@@ -1,5 +1,7 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createUserController, deleteUserController, getUserByIdController, getUsersController, updateUserByIdController } from './user.controller';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
+import { is } from 'drizzle-orm';
 
 const user = (app: Express) => {
     //create user
@@ -15,6 +17,8 @@ const user = (app: Express) => {
 
     //get all users
     app.route('/user_all').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getUsersController(req,res)
@@ -26,6 +30,8 @@ const user = (app: Express) => {
 
     // get user by id
     app.route('/user/:userId').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getUserByIdController(req,res)

@@ -29,6 +29,8 @@ const doctor = (app: Express) => {
 
     // get doctor by id
     app.route('/doctor/:doctorId').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getDoctorByIdController(req,res)
