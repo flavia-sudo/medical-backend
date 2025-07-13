@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>13/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>8/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -104,73 +104,73 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { eq } from "drizzle-orm";
 import db from "../drizzle/db";
 import { PrescriptionTable, TIPrescription } from "../drizzle/schema";
 &nbsp;
-export const createPrescriptionService = async (prescription: TIPrescription) =&gt; {
-    const [ inserted ] = await db.insert(PrescriptionTable).values(prescription).returning();
-    if (inserted) {
-        return inserted;
+export const createPrescriptionService = <span class="fstat-no" title="function not covered" >async </span>(prescription: TIPrescription) =&gt; {
+    const [ inserted ] = <span class="cstat-no" title="statement not covered" >await db.insert(PrescriptionTable).values(prescription).returning();</span>
+<span class="cstat-no" title="statement not covered" >    if (inserted) {</span>
+<span class="cstat-no" title="statement not covered" >        return inserted;</span>
     }
-    return null;
+<span class="cstat-no" title="statement not covered" >    return null;</span>
 }
 &nbsp;
 //get prescriptions
-export const getPrescriptionService = async () =&gt; {
-    const prescriptions = await db.query.PrescriptionTable.findMany();
-    return prescriptions;
+export const getPrescriptionService = <span class="fstat-no" title="function not covered" >async </span>() =&gt; {
+    const prescriptions = <span class="cstat-no" title="statement not covered" >await db.query.PrescriptionTable.findMany();</span>
+<span class="cstat-no" title="statement not covered" >    return prescriptions;</span>
 }
 &nbsp;
 //get prescription by id
-export const getPrescriptionByIdService = async (Id: number) =&gt; {
-    const prescription = await db.query.PrescriptionTable.findFirst({
+export const getPrescriptionByIdService = <span class="fstat-no" title="function not covered" >async </span>(Id: number) =&gt; {
+    const prescription = <span class="cstat-no" title="statement not covered" >await db.query.PrescriptionTable.findFirst({</span>
         where: eq(PrescriptionTable.prescriptionId, Id)
     });
-    return prescription;
+<span class="cstat-no" title="statement not covered" >    return prescription;</span>
 }
 &nbsp;
 //update prescription by id
-export const updatePrescriptionService = async (Id: number, prescription: TIPrescription) =&gt; {
-    const updated = await db.update(PrescriptionTable).set(prescription).where(eq(PrescriptionTable.prescriptionId, Id)).returning();
-    return updated;
+export const updatePrescriptionService = <span class="fstat-no" title="function not covered" >async </span>(Id: number, prescription: TIPrescription) =&gt; {
+    const updated = <span class="cstat-no" title="statement not covered" >await db.update(PrescriptionTable).set(prescription).where(eq(PrescriptionTable.prescriptionId, Id)).returning();</span>
+<span class="cstat-no" title="statement not covered" >    return updated;</span>
 }
 &nbsp;
 //delete prescription by id
-export const deletePrescriptionService = async (Id: number) =&gt; {
-    const deleted = await db.delete(PrescriptionTable).where(eq(PrescriptionTable.prescriptionId, Id)).returning();
-    return deleted;
+export const deletePrescriptionService = <span class="fstat-no" title="function not covered" >async </span>(Id: number) =&gt; {
+    const deleted = <span class="cstat-no" title="statement not covered" >await db.delete(PrescriptionTable).where(eq(PrescriptionTable.prescriptionId, Id)).returning();</span>
+<span class="cstat-no" title="statement not covered" >    return deleted;</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -178,7 +178,7 @@ export const deletePrescriptionService = async (Id: number) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-08T17:46:19.973Z
+                at 2025-07-10T12:10:54.246Z
             </div>
         <script src="prettify.js"></script>
         <script>

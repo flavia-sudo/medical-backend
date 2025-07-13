@@ -36,12 +36,8 @@ export const createAdminController = async (req: Request, res: Response) => {
             token
         });
     } catch (error: any) {
-        if (error.message === "Failed to create admin") {
-            return res.status(400).json({ error: "Failed to create admin" });
-        } else {
             return res.status(500).json({ error: error.message });
         }
-    }
 };
 
 // Login user controller (works for users, admins and doctors)
@@ -68,7 +64,7 @@ export const verifyCodeController = async (req: Request, res: Response) => {
     try {
         const {email, code} = req.body;
         const result = await verifyCodeService(email, code);
-        return res.status(200).json({message: result});
+        return res.status(200).json( result );
     } catch (error: any) {
         return res.status(500).json({ error: error.message });
     }

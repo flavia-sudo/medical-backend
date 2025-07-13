@@ -15,7 +15,7 @@ export const createAppointmentController = async(req: Request, res: Response) =>
             appointment.updatedAt = new Date(appointment.updatedAt);
         }
         const newAppointment = await createAppointmentService(appointment);
-        console.log(appointment);
+        // console.log(appointment);
         if (newAppointment) {
             res.status(201).json({
                 message: "Appointment created successfully",
@@ -27,7 +27,7 @@ export const createAppointmentController = async(req: Request, res: Response) =>
             });
         }
     } catch (error: any) {
-        console.log(error); 
+        // console.log(error); 
         return res.status(500).json({error: error.message})
     }
 }

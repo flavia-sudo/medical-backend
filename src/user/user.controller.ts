@@ -60,11 +60,9 @@ export const updateUserByIdController = async (req: Request, res: Response) => {
         }
         const user = req.body;
         const password = user.password;
-        if (password) {
             const hashedPassword = await bcrypt.hash(password, 10);
             user.password = hashedPassword;
             console.log("Password after hashing", user.password);
-        }
         const token = jwt.sign({ userId: user }, process.env.JWT_SECRET as string, {
             expiresIn: '1d' });
         await updateUserService(userId, user);
