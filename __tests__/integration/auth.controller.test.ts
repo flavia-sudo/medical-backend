@@ -7,7 +7,6 @@ import {
  } from "../../src/auth/auth.controller";
 import request from "supertest";
 import * as AuthService from "../../src/auth/auth.service";
-import e from "express";
 
 const app = express ();
 app.use(express.json());
