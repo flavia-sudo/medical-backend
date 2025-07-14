@@ -96,7 +96,12 @@ describe("Transaction Controller", () => {
         expect(response.body).toEqual({ error: "Transaction not found" });
       });
       it("should return 500 if an error occurs", async () => {
-        (TransactionService.getTransactionByIdService as jest.Mock).mockRejectedValue(new Error("Failed to get transaction"));
+        jest.resetAllMocks();
+
+        (TransactionService.getTransactionByIdService as jest.Mock).mockImplementation(() => {
+          throw new Error("Failed to get transaction");
+        });
+
         const response = await request(app).get("/transaction/1");
         expect(response.status).toBe(500);
         expect(response.body).toEqual({ error: "Failed to get transaction" });
@@ -129,13 +134,19 @@ describe("Transaction Controller", () => {
         expect(response.body).toEqual({ error: "Transaction not found" });
       });
       it("should return 500 if an error occurs", async () => {
-        (TransactionService.updateTransactionService as jest.Mock).mockRejectedValue(new Error("Failed to update transaction"));
+        jest.resetAllMocks();
+
+        (TransactionService.updateTransactionService as jest.Mock).mockImplementation(() => {
+          throw new Error("Failed to update transaction");
+        });
+
         const response = await request(app).put("/transaction/1").send({
           amount: '200.00',
         });
         expect(response.status).toBe(500);
         expect(response.body).toEqual({ error: "Failed to update transaction" });
       });
+
     })
 
     describe("DELETE /transaction/:transactionId", () => {

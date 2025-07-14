@@ -42,7 +42,7 @@ export const getTransactionByIdController = async (req: Request, res: Response) 
             res.status(404).json({ error: "Transaction not found" });
         }
     } catch (error: any) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message });
     }
 }
 
@@ -63,7 +63,7 @@ export const updateTransactionController = async (req: Request, res: Response) =
             res.status(404).json({ error: "Transaction not found" });
         }
     } catch (error: any) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message });
     }
 }
 
@@ -80,6 +80,6 @@ export const deleteTransactionController = async (req: Request, res: Response) =
         await deleteTransactionService(transactionId);
         return res.status(204).json({ message: "Transaction deleted successfully" });
     } catch (error: any) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message });
     }
 }
