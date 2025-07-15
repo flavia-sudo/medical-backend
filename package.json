@@ -20,7 +20,11 @@
     "stress:appointments": "k6 run load-tests/stress/appointments.get.stress.ts",
     "stress:prescriptions": "k6 run load-tests/stress/prescriptions.get.stress.ts",
     "spike:appointments": "k6 run load-tests/spike/appointments.get.spike.ts",
-    "spike:prescriptions": "k6 run load-tests/spike/prescriptions.get.spike.ts"
+    "spike:prescriptions": "k6 run load-tests/spike/prescriptions.get.spike.ts",
+    "soak:appointments": "k6 run load-tests/soak/appointments.get.soak.ts",
+    "soak:prescriptions": "k6 run load-tests/soak/prescriptions.get.soak.ts",
+    "breakpoint:appointments": "k6 run load-tests/breakpoint/appointments.get.breakpoint.ts",
+    "breakpoint:prescriptions": "k6 run load-tests/breakpoint/prescriptions.get.breakpoint.ts"
   },
   "keywords": [],
   "author": "",
