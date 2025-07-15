@@ -14,7 +14,9 @@
     "smoke:register": "k6 run load-tests/smoke/register.smoke.ts",
     "smoke:appointments": "k6 run load-tests/smoke/appointments.get.smoke.ts",
     "smoke:appointment": "k6 run load-tests/smoke/appointment.create.smoke.ts",
-    "smoke:prescription": "k6 run load-tests/smoke/prescriptions.getId.smoke.ts"
+    "smoke:prescription": "k6 run load-tests/smoke/prescriptions.getId.smoke.ts",
+    "load:appointments": "k6 run load-tests/load/appointments.get.load.ts",
+    "load:prescriptions": "k6 run load-tests/load/prescriptions.get.load.ts"
   },
   "keywords": [],
   "author": "",
