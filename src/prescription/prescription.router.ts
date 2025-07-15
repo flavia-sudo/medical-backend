@@ -14,8 +14,8 @@ const prescription = (app: Express) => {
     )
 
     app.route('/prescription_all').get(
-        isAuthenticated,
-        isAdmin,
+        // isAuthenticated,
+        // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPrescriptionController(req,res)

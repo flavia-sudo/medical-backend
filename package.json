@@ -9,7 +9,12 @@
     "start": "npm run build && node dist/index.js",
     "test": "jest --coverage",
     "push": "drizzle-kit push",
-    "studio": "drizzle-kit studio"
+    "studio": "drizzle-kit studio",
+    "smoke:login": "k6 run load-tests/smoke/login.smoke.ts",
+    "smoke:register": "k6 run load-tests/smoke/register.smoke.ts",
+    "smoke:appointments": "k6 run load-tests/smoke/appointments.get.smoke.ts",
+    "smoke:appointment": "k6 run load-tests/smoke/appointment.create.smoke.ts",
+    "smoke:prescription": "k6 run load-tests/smoke/prescriptions.getId.smoke.ts"
   },
   "keywords": [],
   "author": "",
