@@ -16,7 +16,9 @@
     "smoke:appointment": "k6 run load-tests/smoke/appointment.create.smoke.ts",
     "smoke:prescription": "k6 run load-tests/smoke/prescriptions.getId.smoke.ts",
     "load:appointments": "k6 run load-tests/load/appointments.get.load.ts",
-    "load:prescriptions": "k6 run load-tests/load/prescriptions.get.load.ts"
+    "load:prescriptions": "k6 run load-tests/load/prescriptions.get.load.ts",
+    "stress:appointments": "k6 run load-tests/stress/appointments.get.stress.ts",
+    "stress:prescriptions": "k6 run load-tests/stress/prescriptions.get.stress.ts"
   },
   "keywords": [],
   "author": "",
