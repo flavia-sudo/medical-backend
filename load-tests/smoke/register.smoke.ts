@@ -11,7 +11,7 @@ function randomEmail(): string {
 }
 
 export default function () {
-    const url = 'http://localhost:3000/auth/register';
+    const url = 'https://medical-backend-v1wz.onrender.com/auth/register';
     const payload = JSON.stringify({
         firstName: 'Dennis',
         lastName: 'Kizito',

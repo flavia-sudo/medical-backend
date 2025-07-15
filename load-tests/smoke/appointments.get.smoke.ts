@@ -7,7 +7,7 @@ export const options = {
 }
 
 export default function () {
-    const url = 'http://localhost:3000/appointment';
+    const url = 'https://medical-backend-v1wz.onrender.com/appointment';
 
     const params = {
         headers: {

@@ -8,7 +8,7 @@ export const options = {
 };
 
 export default function () {
-    const url = 'http://localhost:3000/auth/login';
+    const url = 'https://medical-backend-v1wz.onrender.com/auth/login';
     const payload = JSON.stringify({
         email: 'flkihahu@gmail.com',
         password: '12345678',
