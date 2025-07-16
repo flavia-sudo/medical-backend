@@ -52,6 +52,7 @@
     "@neondatabase/serverless": "^1.0.1",
     "@types/express": "^5.0.3",
     "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "drizzle-orm": "^0.44.2",
     "express": "^5.1.0",
