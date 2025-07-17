@@ -1,7 +1,7 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-const BASE_URL = 'http://lohttps://medical-backend-v1wz.onrender.com';
+const BASE_URL = 'http://medical-backend-v1wz.onrender.com';
 
 export const options = {
     stages: [
