@@ -10,7 +10,7 @@ export const options = {
         { duration: '30s', target: 200 },   // ramp-up to 200 users
         { duration: '30s', target: 400 },   // ramp-up to 400 users
         { duration: '30s', target: 800 },   // ramp-up to 800 users
-        { duration: '30s', target: 1600 },  // ramp-up to 1600 users (keep increasing)
+        { duration: '30s', target: 1000 },  // ramp-up to 1600 users (keep increasing)
         { duration: '30s', target: 0 },     // ramp-down to 0 users
     ],
     ext: {
