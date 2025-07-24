@@ -58,7 +58,7 @@ const appointment = (app: Express) => {
         }
     )
 
-    app.route('/appointment/:userId').get(
+    app.route('/appointment/user/:userId').get(
         async(req:Request, res:Response, next:NextFunction) => {
             try {
                 await getAppointmentsByPatientIdController(req,res)
