@@ -110,8 +110,10 @@ export const getPrescriptionByUserIdController = async (req: Request, res: Respo
             return res.status(400).json({error: "Invalid user id"});
         }
         const prescriptions = await getPrescriptionByUserIdService(userId);
+        console.log(prescriptions)
         res.status(200).json(prescriptions);
     } catch (error: any) {
+        console.log(error)
         return res.status(500).json({error: error.message})
     }
 }

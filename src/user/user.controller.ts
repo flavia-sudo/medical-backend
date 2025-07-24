@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUserService, deleteUserService, getUserByIdService, getUsersService, updateUserService } from "./user.service";
+import { createUserService, deleteUserService, getUserByIdService, getUsersService, updateUserService, getDoctorsService } from "./user.service";
 import { sendWelcomeEmail } from "../email/email.service";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -88,6 +88,15 @@ export const deleteUserController = async (req: Request, res: Response) => {
         }
         await deleteUserService(userId);
         return res.status(204).json({message: "User deleted successfully"});
+    } catch (error: any) {
+        return res.status(500).json({error: error.message})
+    }
+}
+
+export const getDoctorsController = async (req: Request, res: Response) => {
+    try {
+        const doctors = await getDoctorsService();
+        res.status(200).json(doctors);
     } catch (error: any) {
         return res.status(500).json({error: error.message})
     }

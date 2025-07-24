@@ -1,5 +1,5 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createUserController, deleteUserController, getUserByIdController, getUsersController, updateUserByIdController } from './user.controller';
+import { createUserController, deleteUserController, getUserByIdController, getUsersController, updateUserByIdController, getDoctorsController } from './user.controller';
 import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 import { is } from 'drizzle-orm';
 
@@ -57,6 +57,19 @@ const user = (app: Express) => {
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteUserController(req,res)
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //get doctors
+    app.route('/users/doctors_all').get(
+        isAuthenticated,
+        // isAdmin,
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getDoctorsController(req,res)
             } catch (error) {
                 next(error)
             }
