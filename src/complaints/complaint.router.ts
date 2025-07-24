@@ -1,5 +1,5 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createComplaintController, deleteComplaintController, getComplaintByIdController, getComplaintController, updateComplaintController } from './complaint.controller';
+import { createComplaintController, deleteComplaintController, getComplaintByIdController, getComplaintController, getComplaintsByUserIdController, updateComplaintController } from './complaint.controller';
 import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 const complaint = (app: Express) => {
@@ -54,6 +54,16 @@ const complaint = (app: Express) => {
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteComplaintController(req,res)
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    app.route('/complaint/user/:userId').get(
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getComplaintsByUserIdController(req,res)
             } catch (error) {
                 next(error)
             }

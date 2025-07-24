@@ -34,7 +34,7 @@ export const createAppointmentController = async(req: Request, res: Response) =>
             });
         }
     } catch (error: any) {
-        // console.log(error); 
+        console.log(error); 
         return res.status(500).json({error: error.message})
     }
 }
@@ -112,6 +112,7 @@ export const getAppointmentsByPatientIdController = async (req: Request, res: Re
         const appointments = await getAppointmentByUserIdService(userId);
         res.status(200).json(appointments);
     } catch (error: any) {
+        console.log(error);
         return res.status(500).json({error: error.message})
     }
 }

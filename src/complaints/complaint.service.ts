@@ -31,3 +31,10 @@ export const deleteComplaintService = async (Id: number) => {
     const deleted = await db.delete(ComplaintTable).where(eq(ComplaintTable.complaintId, Id)).returning();
     return deleted;
 }
+
+export const getComplaintByUserIdService = async (userId: number) => {
+    const complaints = await db.query.ComplaintTable.findMany({
+        where: eq(ComplaintTable.userId, userId)
+    });
+    return complaints;
+}

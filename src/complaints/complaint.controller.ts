@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createComplaintService, deleteComplaintService, getComplaintByIdService, getComplaintService, updateComplaintService } from "./complaint.service";
+import { createComplaintService, deleteComplaintService, getComplaintByIdService, getComplaintService, updateComplaintService, getComplaintByUserIdService } from "./complaint.service";
 
 export const createComplaintController = async (req: Request, res: Response) => {
     try {
@@ -89,6 +89,19 @@ export const deleteComplaintController = async (req: Request, res: Response) => 
         }
         await deleteComplaintService(complaintId);
         return res.status(204).json({message: "Complaint deleted successfully"});
+    } catch (error: any) {
+        return res.status(500).json({error: error.message})
+    }
+}
+
+export const getComplaintsByUserIdController = async (req: Request, res: Response) => {
+    try {
+        const userId = parseInt(req.params.userId);
+        if (isNaN(userId)) {
+            return res.status(400).json({error: "Invalid user id"});
+        }
+        const complaints = await getComplaintByUserIdService(userId);
+        res.status(200).json(complaints);
     } catch (error: any) {
         return res.status(500).json({error: error.message})
     }
