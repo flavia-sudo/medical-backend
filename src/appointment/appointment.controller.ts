@@ -1,5 +1,12 @@
 import { Request, Response } from "express";
-import { createAppointmentService, deleteAppointmentService, getAppointmentByIdService, getAppointmentService, updateAppointmentService } from "./appointment.service";
+import { 
+    createAppointmentService,
+    deleteAppointmentService,
+    getAppointmentByIdService,
+    getAppointmentService,
+    updateAppointmentService,
+    getAppointmentByUserIdService
+} from "./appointment.service";
 
 export const createAppointmentController = async(req: Request, res: Response) => {
     try {
@@ -91,6 +98,19 @@ export const deleteAppointmentController = async (req: Request, res: Response) =
         }
         await deleteAppointmentService(appointmentId);
         return res.status(204).json({message: "Appointment deleted successfully"});
+    } catch (error: any) {
+        return res.status(500).json({error: error.message})
+    }
+}
+
+export const getAppointmentsByPatientIdController = async (req: Request, res: Response) => {
+    try {
+        const userId = parseInt(req.params.userId);
+        if (isNaN(userId)) {
+            return res.status(400).json({error: "Invalid patient id"});
+        }
+        const appointments = await getAppointmentByUserIdService(userId);
+        res.status(200).json(appointments);
     } catch (error: any) {
         return res.status(500).json({error: error.message})
     }

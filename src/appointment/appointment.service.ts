@@ -36,3 +36,11 @@ export const deleteAppointmentService = async (Id: number) => {
     const deleted = await db.delete(AppointmentTable).where(eq(AppointmentTable.appointmentId, Id)).returning();
     return deleted;
 }
+
+//get appointment by user id
+export const getAppointmentByUserIdService = async (userId: number) => {
+    const appointments = await db.query.AppointmentTable.findMany({
+        where: eq(AppointmentTable.userId, userId)
+    });
+    return appointments;
+}

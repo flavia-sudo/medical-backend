@@ -1,5 +1,11 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createAppointmentController, deleteAppointmentController, getAppointmentByIdController, getAppointmentController, updateAppointmentController } from './appointment.controller';
+import { createAppointmentController,
+    deleteAppointmentController,
+    getAppointmentByIdController,
+    getAppointmentController,
+    updateAppointmentController,
+    getAppointmentsByPatientIdController
+} from './appointment.controller';
 
 const appointment = (app: Express) => {
     app.route('/appointment').post(
@@ -46,6 +52,16 @@ const appointment = (app: Express) => {
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteAppointmentController(req,res)
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    app.route('/appointment/:userId').get(
+        async(req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getAppointmentsByPatientIdController(req,res)
             } catch (error) {
                 next(error)
             }
