@@ -35,3 +35,11 @@ export const deletePrescriptionService = async (Id: number) => {
     const deleted = await db.delete(PrescriptionTable).where(eq(PrescriptionTable.prescriptionId, Id)).returning();
     return deleted;
 }
+
+//get prescription by user id
+export const getPrescriptionByUserIdService = async (userId: number) => {
+    const prescriptions = await db.query.PrescriptionTable.findMany({
+        where: eq(PrescriptionTable.patientId, userId)
+    });
+    return prescriptions;
+}
