@@ -43,3 +43,11 @@ export const getPrescriptionByUserIdService = async (userId: number) => {
     });
     return prescriptions;
 }
+
+//get prescription by doctor id
+export const getPrescriptionByDoctorIdService = async (doctorId: number) => {
+    const prescriptions = await db.query.PrescriptionTable.findMany({
+        where: eq(PrescriptionTable.doctorId, doctorId)
+    });
+    return prescriptions;
+}

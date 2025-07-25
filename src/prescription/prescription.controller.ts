@@ -5,8 +5,8 @@ import {
     getPrescriptionByIdService,
     getPrescriptionService,
     updatePrescriptionService, 
-    getPrescriptionByUserIdService
-
+    getPrescriptionByUserIdService,
+    getPrescriptionByDoctorIdService
  } from "./prescription.service";
 
 export const createPrescriptionController = async (req: Request, res: Response) => {
@@ -114,6 +114,20 @@ export const getPrescriptionByUserIdController = async (req: Request, res: Respo
         res.status(200).json(prescriptions);
     } catch (error: any) {
         console.log(error)
+        return res.status(500).json({error: error.message})
+    }
+}
+
+//get prescription by doctor id
+export const getPrescriptionByDoctorIdController = async (req: Request, res: Response) => {
+    try {
+        const doctorId = parseInt(req.params.doctorId);
+        if (isNaN(doctorId)) {
+            return res.status(400).json({error: "Invalid doctor id"});
+        }
+        const prescriptions = await getPrescriptionByDoctorIdService(doctorId);
+        res.status(200).json(prescriptions);
+    } catch (error: any) {
         return res.status(500).json({error: error.message})
     }
 }

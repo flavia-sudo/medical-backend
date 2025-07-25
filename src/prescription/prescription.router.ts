@@ -1,5 +1,5 @@
 import { Express, Response, Request, NextFunction } from 'express';
-import { createPrescriptionController, deletePrescriptionController, getPrescriptionByIdController, getPrescriptionByUserIdController, getPrescriptionController, updatePrescriptionController } from './prescription.controller';
+import { createPrescriptionController, deletePrescriptionController, getPrescriptionByIdController, getPrescriptionByUserIdController, getPrescriptionController, updatePrescriptionController, getPrescriptionByDoctorIdController } from './prescription.controller';
 import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 import { get } from 'http';
 
@@ -60,6 +60,16 @@ const prescription = (app: Express) => {
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPrescriptionByUserIdController(req,res)
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    app.route('/prescription/doctor/:doctorId').get(
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getPrescriptionByDoctorIdController(req,res)
             } catch (error) {
                 next(error)
             }
