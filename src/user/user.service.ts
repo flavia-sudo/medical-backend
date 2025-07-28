@@ -39,8 +39,10 @@ export const deleteUserService = async (Id: number) => {
 
 // get user with role doctor
 export const getDoctorsService = async () => {
-    const doctors = await db.query.UserTable.findMany({
-        where: eq(UserTable.role, "doctor")
-    });
-    return doctors;
-}
+  const doctors = await db
+    .select()
+    .from(UserTable)
+    .where(eq(UserTable.role, "doctor"));
+  
+  return doctors;
+};

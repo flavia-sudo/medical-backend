@@ -20,7 +20,7 @@ export const registerUserController = async (req: Request, res: Response) => {
 export const createAdminController = async (req: Request, res: Response) => {
     try {
         const adminData = req.body;
-        if (!adminData.firstName || !adminData.lastName || !adminData.email || !adminData.password || !adminData.role) {
+        if (!adminData.firstName || !adminData.lastName || !adminData.email || !adminData.password) {
             return res.status(400).json({ error: "Missing required admin fields" });
         }
         const { admin, token } = await createAdminService(adminData);
@@ -31,7 +31,6 @@ export const createAdminController = async (req: Request, res: Response) => {
                 firstName: admin.firstName,
                 lastName: admin.lastName,
                 email: admin.email,
-                role: admin.role
             },
             token
         });

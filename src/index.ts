@@ -1,6 +1,5 @@
 import express from "express";
 import user from "./user/user.router";
-import doctor from "./doctor/doctor.router";
 import appointment from "./appointment/appointment.router";
 import payment from "./payment/payment.router";
 import complaint from "./complaints/complaint.router";
@@ -18,7 +17,6 @@ app.use(cors());
 
 auth(app);
 user(app);
-doctor(app);
 appointment(app);
 payment(app);
 transaction(app);

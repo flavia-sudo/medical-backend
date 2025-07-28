@@ -17,8 +17,8 @@ const user = (app: Express) => {
 
     //get all users
     app.route('/user_all').get(
-        isAuthenticated,
-        isAdmin,
+        // isAuthenticated,
+        // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getUsersController(req,res)

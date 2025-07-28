@@ -38,3 +38,4 @@ export const getComplaintByUserIdService = async (userId: number) => {
     });
     return complaints;
 }
+

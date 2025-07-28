@@ -2,23 +2,24 @@ import db from "../drizzle/db";
 import { TIUser, UserTable } from "../drizzle/schema";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { sendVerificationEmail } from "../email/email.service";
-import { sendWelcomeEmail } from "../email/email.service"
+import { sendVerificationEmail, sendWelcomeEmail } from "../email/email.service";
 import { and, eq } from "drizzle-orm";
 
 export const createUserService = async (user: Omit<TIUser, "userId">) => {
     const hashedPassword = await bcrypt.hash(user.password, 10);
+    const email = user.email.toLowerCase();
         //generates random 6-digit code
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     const newUser: TIUser = {
         ...user,
+        email: email,
         password: hashedPassword,
         role: user.role ?? "user",
         verificationCode: verificationCode,
         verified: false,
     };
     const [createdUser] = await db.insert(UserTable).values(newUser).returning();
-    if (!user) {
+    if (!createdUser) {
         throw new Error("Failed to create user");
     }
 

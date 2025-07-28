@@ -56,24 +56,31 @@ export const updateUserByIdController = async (req: Request, res: Response) => {
     try {
         const userId = parseInt(req.params.userId);
         if (isNaN(userId)) {
-            return res.status(400).json({error: "Invalid user id"});
+            return res.status(400).json({ error: "Invalid user id" });
         }
-        const user = req.body;
-        const password = user.password;
-            const hashedPassword = await bcrypt.hash(password, 10);
-            user.password = hashedPassword;
-            console.log("Password after hashing", user.password);
-        const token = jwt.sign({ userId: user }, process.env.JWT_SECRET as string, {
-            expiresIn: '1d' });
-        await updateUserService(userId, user);
+
+        const updates = { ...req.body };
+
+        if (updates.password) {
+            updates.password = await bcrypt.hash(updates.password, 10);
+            console.log("Password after hashing", updates.password);
+        }
+
+        await updateUserService(userId, updates);
+
+        const token = jwt.sign({ userId }, process.env.JWT_SECRET as string, {
+            expiresIn: '1d',
+        });
+
         return res.status(200).json({
             message: "User updated successfully",
-            token
+            token,
         });
     } catch (error: any) {
-        return res.status(500).json({error: error.message})
+        return res.status(500).json({ error: error.message });
     }
-}
+};
+
 
 // delete user by id
 export const deleteUserController = async (req: Request, res: Response) => {
@@ -87,7 +94,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
             return res.status(404).json({error: "User not found"});
         }
         await deleteUserService(userId);
-        return res.status(204).json({message: "User deleted successfully"});
+            return res.status(200).json({ message: "User deleted successfully" });
     } catch (error: any) {
         return res.status(500).json({error: error.message})
     }
@@ -96,6 +103,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
 export const getDoctorsController = async (req: Request, res: Response) => {
     try {
         const doctors = await getDoctorsService();
+        console.log(doctors);
         res.status(200).json(doctors);
     } catch (error: any) {
         return res.status(500).json({error: error.message})
