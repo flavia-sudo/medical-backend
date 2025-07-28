@@ -72,7 +72,17 @@ export const updateAppointmentController = async (req: Request, res: Response) =
             return res.status(400).json({error: "Invalid appointment id"});
         }
         const appointment = req.body;
-        const updatedAppointment = await updateAppointmentService(appointmentId, appointment);
+        const payload ={
+            ...appointment,
+            time: new Date(appointment.time),
+            appointmentDate: new Date(appointment.appointmentDate),
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+                        console.log(payload)
+
+        const updatedAppointment = await updateAppointmentService(appointmentId, payload);
+
         if (updatedAppointment) {
             res.status(200).json({
                 message: "Appointment updated successfully",

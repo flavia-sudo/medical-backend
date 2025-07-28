@@ -65,7 +65,7 @@ const user = (app: Express) => {
 
     //get doctors
     app.route('/users/doctors_all').get(
-        isAuthenticated,
+        // isAuthenticated,
         // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
