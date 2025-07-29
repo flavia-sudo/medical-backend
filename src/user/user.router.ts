@@ -53,7 +53,7 @@ const user = (app: Express) => {
     )
 
     // delete user by id
-    app.route('/user/:userId').delete(
+    app.route('/users/delete/:userId').delete(
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteUserController(req,res)
