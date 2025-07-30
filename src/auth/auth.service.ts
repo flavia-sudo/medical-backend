@@ -83,18 +83,33 @@ console.log("valid password",isPasswordValid);
     return {user, token};
 }
 
-export const verifyCodeService = async (email: string, code: string) =>{
-  
-  const[user] = await db
-  .select()
-  .from(UserTable)
-  .where(and(eq(UserTable.email, email), eq(UserTable.verificationCode, code)));
-  if(!user) {
+export const verifyCodeService = async (email: string, code: string) => {
+  const [user] = await db
+    .select()
+    .from(UserTable)
+    .where(and(eq(UserTable.email, email), eq(UserTable.verificationCode, code)));
+
+  if (!user) {
     throw new Error("Invalid verification code");
   }
+
+  // Mark user as verified
   await db.update(UserTable)
-  .set({verified: true, verificationCode: null})
-  .where(eq(UserTable.userId, user.userId));
-  return "Email verified successfully";
-}
+    .set({ verified: true })
+    .where(eq(UserTable.userId, user.userId));
+
+  // Get the updated user
+  const [updatedUser] = await db
+    .select()
+    .from(UserTable)
+    .where(eq(UserTable.userId, user.userId));
+
+  // Generate token
+  const token = jwt.sign({ userId: updatedUser.userId }, process.env.JWT_SECRET as string, {
+    expiresIn: '1d',
+  });
+
+  return { user: updatedUser, token };
+};
+
 

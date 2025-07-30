@@ -60,11 +60,17 @@ export const loginUserController = async (req: Request, res: Response) => {
 
 // verify
 export const verifyCodeController = async (req: Request, res: Response) => {
-    try {
-        const {email, code} = req.body;
-        const result = await verifyCodeService(email, code);
-        return res.status(200).json( result );
-    } catch (error: any) {
-        return res.status(500).json({ error: error.message });
-    }
+  try {
+    const { email, code } = req.body;
+    const { user, token } = await verifyCodeService(email, code);
+    console.log(user, token)
+
+    return res.status(200).json({
+      message: "Email verified successfully",
+      user,
+      token,
+    });
+  } catch (error: any) {
+    return res.status(500).json({ error: error.message });
+  }
 };
