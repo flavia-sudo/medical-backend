@@ -16,8 +16,8 @@ const payment = (app: Express) => {
 
     //get all payments
     app.route('/payment_all').get(
-        isAuthenticated,
-        isAdmin,
+        // isAuthenticated,
+        // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPaymentController(req,res)

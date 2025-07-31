@@ -16,8 +16,8 @@ const complaint = (app: Express) => {
 
     //get all complaints
     app.route('/complaint_all').get(
-        isAuthenticated,
-        isAdmin,
+        // isAuthenticated,
+        // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getComplaintController(req,res)
