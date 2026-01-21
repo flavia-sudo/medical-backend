@@ -1,7 +1,6 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createUserController, deleteUserController, getUserByIdController, getUsersController, updateUserByIdController, getDoctorsController } from './user.controller';
 import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
-import { is } from 'drizzle-orm';
 
 const user = (app: Express) => {
     //create user
