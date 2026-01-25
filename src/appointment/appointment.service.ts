@@ -1,4 +1,3 @@
-import e from "express";
 import db from "../drizzle/db";
 import { AppointmentTable, TIAppointment } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
